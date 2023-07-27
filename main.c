@@ -5,12 +5,12 @@
  
 
 int main() {
-    // Definindo variáveis e a matriz
+    // Defining variables and the array
     char nomeArquivo[20];
     int linha = 0, coluna = 0, bombas = 0, b1 = 0, b2 = 0, jogadas = 0, j1 = 0, j2 = 0;
     tab ** x;
     
-    // Abrindo o arquivo
+    // opening the file
     FILE *f;
     scanf("%s", nomeArquivo);
     f = fopen(nomeArquivo, "r");
@@ -19,26 +19,26 @@ int main() {
         return 1;
     }
 
-    // Coletando o número de linhas e colunas
+    // collecting the number of rows and columns
     fscanf(f, "%d %d", &linha, &coluna);
 
-    // Montando o tabuleiro 1) criando matriz de tamanho linha x coluna
+    // arranging the board: 1) creating an array of size rowsXcolumns 
     x = aloca_matriz(linha, coluna);
 
-    // Montando o tabuleiro 2) atribuindo 0 a todos os structs
+    // arranging the board: 2) assigning 0 to all of the structs
     zerar_matriz(x, linha, coluna);
     
-    // Montando o tabuleiro 3) colocando bombas
+    // arranging the board: 3) inserting the bombs
     fscanf(f, "%d", &bombas);
     for (int i = 0; i < bombas; i++) {
         fscanf(f, "%d %d", &b1, &b2);
         x[b1][b2].valor = -1;
     }
     
-    // Montando o tabuleiro 4) colocando nas casas livres o número de bombas ao redor
+    // arranging the board: 4) Inserting the number of bombs in the surroundings into the places without bombs
     contador(x, linha, coluna);
 
-    // Recolhendo jogadas e aplicando elas através da função recursiva
+    // collecting moves and applying them through the recursive function.
     fscanf(f, "%d", &jogadas);
     for (int i = 0; i < jogadas; i++) {
         fscanf(f, "%d %d", &j1, &j2);
@@ -49,13 +49,13 @@ int main() {
         }
     }
 
-    // Imprimir o tabuleiro
+    // print the board
     imprimirTabuleiro(x, linha, coluna);
 
-    // Liberando a memória alocada dinamicamente
+    // freeing dynamically allocated memory
     libera_matriz(x, linha);
 
-    // Fechar arquivo
+    // closing the file
     fclose(f);
     return 0;
 }
