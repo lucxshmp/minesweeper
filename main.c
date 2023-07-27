@@ -5,7 +5,7 @@
  
 
 int main() {
-    // Defining variables and the array
+    // defining variables and the array
     char nomeArquivo[20];
     int linha = 0, coluna = 0, bombas = 0, b1 = 0, b2 = 0, jogadas = 0, j1 = 0, j2 = 0;
     tab ** x;
